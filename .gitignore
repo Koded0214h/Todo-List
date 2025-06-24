@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.env
+*.env.*
+venv/
+ENV/
+.envrc
+.DS_Store
+
+# Django
+/staticfiles/
+/media/
+*.log
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.env*
+
+# Vite
+*.local
+*.cache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# Mac
+Icon?
+
+# Pytest
+.pytest_cache/
+
+# Migrations
+*/migrations/*
+!*/migrations/__init__.py 
