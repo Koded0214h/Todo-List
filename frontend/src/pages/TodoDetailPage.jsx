@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8000/todos/';
+import { getTodo, updateTodo, deleteTodo } from '../api';
 
 const TodoDetailPage = () => {
   const { id } = useParams();
@@ -14,11 +12,11 @@ const TodoDetailPage = () => {
   const [editDesc, setEditDesc] = useState('');
 
   useEffect(() => {
-    axios.get(`${API_URL}${id}/`)
+    getTodo(id)
       .then(res => {
-        setTodo(res.data);
-        setEditTitle(res.data.title);
-        setEditDesc(res.data.description);
+        setTodo(res);
+        setEditTitle(res.title);
+        setEditDesc(res.description);
         setLoading(false);
       })
       .catch(() => {
@@ -30,7 +28,7 @@ const TodoDetailPage = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`${API_URL}${id}/`, {
+      await updateTodo(id, {
         title: editTitle,
         description: editDesc,
       });
@@ -42,7 +40,7 @@ const TodoDetailPage = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${API_URL}${id}/`);
+      await deleteTodo(id);
       navigate('/');
     } catch (err) {
       setError('Failed to delete todo');

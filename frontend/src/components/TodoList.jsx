@@ -11,6 +11,7 @@ import './TodoList.css';
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
+  const [newDesc, setNewDesc] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,10 +32,11 @@ const TodoList = () => {
   const handleAdd = async (e) => {
     e.preventDefault();
     if (!newTodo.trim()) return;
-    const todo = { title: newTodo, description: '', completed: false };
+    const todo = { title: newTodo, description: newDesc, completed: false };
     try {
       await createTodo(todo);
       setNewTodo('');
+      setNewDesc('');
       fetchTodos();
     } catch (err) {}
   };
@@ -56,13 +58,21 @@ const TodoList = () => {
   return (
     <div className="glass-container">
       <h1 className="glass-title">Futuristic Todo List</h1>
-      <form className="glass-form" onSubmit={handleAdd}>
+      <form className="glass-form" onSubmit={handleAdd} style={{flexDirection:'column',gap:12}}>
         <input
           className="glass-input"
           type="text"
           placeholder="Add a new todo..."
           value={newTodo}
           onChange={e => setNewTodo(e.target.value)}
+          required
+        />
+        <textarea
+          className="glass-input"
+          placeholder="Description (optional)"
+          value={newDesc}
+          onChange={e => setNewDesc(e.target.value)}
+          style={{minHeight:40}}
         />
         <button className="glass-btn" type="submit">Add</button>
       </form>
