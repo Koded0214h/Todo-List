@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-uap(%)w1v7%8(91$gu_ionpp$==h0fj5)!$4i1p6e=(ax$_mva
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://todo-list-iyrv.onrender.com/']
 
 
 # Application definition
