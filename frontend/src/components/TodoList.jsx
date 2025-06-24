@@ -60,7 +60,7 @@ const TodoList = () => {
       <h1 className="glass-title">Futuristic Todo List</h1>
       <form className="glass-form" onSubmit={handleAdd} style={{flexDirection:'column',gap:12}}>
         <input
-          className="glass-input"
+          className="glass-input glass-input-animated"
           type="text"
           placeholder="Add a new todo..."
           value={newTodo}
@@ -68,7 +68,7 @@ const TodoList = () => {
           required
         />
         <textarea
-          className="glass-input"
+          className="glass-input glass-input-animated"
           placeholder="Description (optional)"
           value={newDesc}
           onChange={e => setNewDesc(e.target.value)}
@@ -91,7 +91,12 @@ const TodoList = () => {
               >
                 {todo.completed ? '✔️' : '⭕'}
               </span>
-              <Link to={`/todos/${todo.id}`} className="glass-todo-title" style={{textDecoration:'none'}}>{todo.title}</Link>
+              <div style={{flex:1}}>
+                <Link to={`/todos/${todo.id}`} className="glass-todo-title" style={{textDecoration:'none'}}>{todo.title}</Link>
+                {todo.description && (
+                  <div className="glass-todo-desc">{todo.description}</div>
+                )}
+              </div>
               <button className="glass-delete" onClick={() => handleDelete(todo.id)} title="Delete">✖</button>
             </div>
           ))

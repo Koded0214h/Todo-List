@@ -55,7 +55,7 @@ const TodoDetailPage = () => {
       <h1 className="glass-title">Todo Details</h1>
       <form className="glass-form" onSubmit={handleUpdate} style={{flexDirection:'column',gap:16}}>
         <input
-          className="glass-input"
+          className="glass-input glass-input-animated"
           type="text"
           value={editTitle}
           onChange={e => setEditTitle(e.target.value)}
@@ -63,7 +63,7 @@ const TodoDetailPage = () => {
           required
         />
         <textarea
-          className="glass-input"
+          className="glass-input glass-input-animated"
           style={{minHeight:60}}
           value={editDesc}
           onChange={e => setEditDesc(e.target.value)}
